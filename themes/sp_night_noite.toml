@@ -1,0 +1,271 @@
+# SP Night — Noite Paulista
+# A cidade às 3h. O escuro azul-violeta do tokyodark, e o poste de sódio queimando quente por cima.
+#
+# Generated from the SP Night palette — do not edit by hand.
+# https://github.com/sp-night/helix
+#
+# install: ~/.config/helix/themes/sp_night_noite.toml
+# enable:  theme = "sp_night_noite"
+
+# ── The surface ──────────────────────────────────────────────────────────────
+#
+# Helix paints the whole editor from `ui.background`, so this is the *laje* the
+# rest of the theme sits on. `ui.text.focus` is the one place text is allowed
+# above `ui.fg`: it marks the row you are actually on in a picker, and the
+# palette has a measured colour for exactly that rather than a brightened `fg`.
+"ui.background"           = { bg = "#151723" }
+"ui.background.separator" = { fg = "#373943" }
+"ui.text"                 = { fg = "#d3d7eb" }
+"ui.text.focus"           = { fg = "#e7ebff", bg = "#272937", modifiers = ["bold"] }
+"ui.text.inactive"        = { fg = "#707380" }
+"ui.text.info"            = { fg = "#868999" }
+"ui.text.directory"       = { fg = "#6e92de" }
+"ui.window"               = { fg = "#373943" }
+
+# ── Mode ─────────────────────────────────────────────────────────────────────
+#
+# The one thing a modal editor must never leave ambiguous. So the mode changes
+# **hue**, not brightness: normal is the *sódio* cursor this project uses
+# everywhere, insert goes to *ibira*, select to *marginal*. Three colours a
+# reader can tell apart at the edge of vision, which is where the mode is
+# actually read — nobody looks at the word.
+#
+# The text inside each cursor is chosen by measured contrast rather than picked,
+# because "dark text on the accent" stops being true the moment a flavour moves.
+"ui.cursor"                 = { fg = "#0f101a", bg = "#868999" }
+"ui.cursor.primary"         = { fg = "#0f101a", bg = "#f2984a" }
+"ui.cursor.normal"          = { fg = "#0f101a", bg = "#f2984a" }
+"ui.cursor.insert"          = { fg = "#0f101a", bg = "#89d093" }
+"ui.cursor.select"          = { fg = "#0f101a", bg = "#6e92de" }
+"ui.cursor.primary.normal"  = { fg = "#0f101a", bg = "#f2984a" }
+"ui.cursor.primary.insert"  = { fg = "#0f101a", bg = "#89d093" }
+"ui.cursor.primary.select"  = { fg = "#0f101a", bg = "#6e92de" }
+"ui.cursor.match"           = { fg = "#f5c66b", modifiers = ["bold"] }
+
+# ── Selection ────────────────────────────────────────────────────────────────
+#
+# Helix keeps many selections at once, so the primary one has to be findable
+# among them. It takes *vidro* — glass reflecting the street — and the rest fall
+# back to *concreto*, one step down the same surface ladder.
+"ui.selection"           = { bg = "#1d1f2d" }
+"ui.selection.primary"   = { bg = "#272937" }
+"ui.highlight"           = { bg = "#272937" }
+"ui.highlight.frameline" = { bg = "#1d1f2d" }
+
+# ── Gutter and lines ─────────────────────────────────────────────────────────
+#
+# The gutter is meant to be read past, not at, so the numbers sit at the quietest
+# text step and only the current line comes back up to `ui.fg`.
+"ui.linenr"                  = { fg = "#707380" }
+"ui.linenr.selected"         = { fg = "#d3d7eb", modifiers = ["bold"] }
+"ui.gutter"                  = { bg = "#151723" }
+"ui.gutter.selected"         = { bg = "#1d1f2d" }
+"ui.cursorline.primary"      = { bg = "#1d1f2d" }
+"ui.cursorline.secondary"    = { bg = "#1d1f2d" }
+"ui.cursorcolumn.primary"    = { bg = "#1d1f2d" }
+"ui.cursorcolumn.secondary"  = { bg = "#1d1f2d" }
+
+# ── Statusline and bufferline ────────────────────────────────────────────────
+#
+# The mode block repeats the cursor's hue, which is the point: two places
+# carrying the same fact, never disagreeing, because both resolve the same role.
+"ui.statusline"          = { fg = "#d3d7eb", bg = "#1d1f2d" }
+"ui.statusline.inactive" = { fg = "#707380", bg = "#0f101a" }
+"ui.statusline.normal"   = { fg = "#0f101a", bg = "#f2984a", modifiers = ["bold"] }
+"ui.statusline.insert"   = { fg = "#0f101a", bg = "#89d093", modifiers = ["bold"] }
+"ui.statusline.select"   = { fg = "#0f101a", bg = "#6e92de", modifiers = ["bold"] }
+"ui.statusline.separator" = { fg = "#373943" }
+"ui.bufferline"            = { fg = "#707380", bg = "#0f101a" }
+"ui.bufferline.active"     = { fg = "#d3d7eb", bg = "#1d1f2d", modifiers = ["bold"] }
+"ui.bufferline.background" = { bg = "#0f101a" }
+
+# ── Popups, menus and the picker ─────────────────────────────────────────────
+#
+# Anything floating drops to the *vão*, the deepest recess, so it separates from
+# the buffer by depth rather than by a border alone.
+"ui.popup"                        = { fg = "#d3d7eb", bg = "#0f101a" }
+"ui.popup.info"                   = { fg = "#868999", bg = "#0f101a" }
+"ui.help"                         = { fg = "#d3d7eb", bg = "#0f101a" }
+"ui.menu"                         = { fg = "#d3d7eb", bg = "#0f101a" }
+"ui.menu.selected"                = { fg = "#e7ebff", bg = "#272937", modifiers = ["bold"] }
+"ui.menu.scroll"                  = { fg = "#373943", bg = "#1d1f2d" }
+"ui.picker.header"                = { fg = "#868999" }
+"ui.picker.header.column"         = { fg = "#868999" }
+"ui.picker.header.column.active"  = { fg = "#f2984a", modifiers = ["bold"] }
+
+# ── Virtual text ─────────────────────────────────────────────────────────────
+#
+# None of this was typed by the person reading it, so none of it is allowed to
+# compete with what was. Inlay hints in particular sit at the quietest step the
+# palette measures — they annotate code, they are not code.
+"ui.virtual"                       = { fg = "#707380" }
+"ui.virtual.ruler"                 = { bg = "#1d1f2d" }
+"ui.virtual.whitespace"            = { fg = "#707380" }
+"ui.virtual.indent-guide"          = { fg = "#373943" }
+"ui.virtual.inlay-hint"            = { fg = "#707380" }
+"ui.virtual.inlay-hint.parameter"  = { fg = "#707380" }
+"ui.virtual.inlay-hint.type"       = { fg = "#707380" }
+"ui.virtual.wrap"                  = { fg = "#373943" }
+"ui.virtual.jump-label"            = { fg = "#f2984a", modifiers = ["bold"] }
+
+"ui.debug"            = { fg = "#f5c66b" }
+"ui.debug.breakpoint" = { fg = "#ea5d5d" }
+"ui.debug.active"     = { fg = "#f5c66b" }
+"tabstop"             = { bg = "#272937" }
+
+# ── Syntax ───────────────────────────────────────────────────────────────────
+#
+# The same accents every other SP Night port gives these, which is the whole
+# reason the role layer exists: a Rust file in Helix and the same file catted in
+# Ghostty are lit by one decision, made once.
+"attribute" = { fg = "#f5c66b" }
+
+"type"              = { fg = "#b094e2" }
+"type.builtin"      = { fg = "#f5c66b" }
+"type.parameter"    = { fg = "#b094e2" }
+"type.enum.variant" = { fg = "#f2984a" }
+"constructor"       = { fg = "#5dbec4" }
+
+"constant"                  = { fg = "#f2984a" }
+"constant.builtin"          = { fg = "#f2984a" }
+"constant.builtin.boolean"  = { fg = "#f2984a" }
+"constant.character"        = { fg = "#89d093" }
+"constant.character.escape" = { fg = "#38b59e" }
+"constant.numeric"          = { fg = "#f2984a" }
+"constant.numeric.integer"  = { fg = "#f2984a" }
+"constant.numeric.float"    = { fg = "#f2984a" }
+
+"string"                = { fg = "#89d093" }
+"string.regexp"         = { fg = "#38b59e" }
+"string.special"        = { fg = "#38b59e" }
+"string.special.path"   = { fg = "#38b59e" }
+"string.special.symbol" = { fg = "#f2984a" }
+# A URL in source is the same thing as a URL in Markdown, so it takes the link
+# role rather than the string one, and gets the underline that makes it look
+# clickable.
+"string.special.url" = { fg = "#6e92de", underline = { style = "line" } }
+
+"comment"                     = { fg = "#868999", modifiers = ["italic"] }
+"comment.line"                = { fg = "#868999", modifiers = ["italic"] }
+"comment.block"               = { fg = "#868999", modifiers = ["italic"] }
+"comment.line.documentation"  = { fg = "#868999", modifiers = ["italic"] }
+"comment.block.documentation" = { fg = "#868999", modifiers = ["italic"] }
+# Code the compiler has told you is dead. It is still a comment's job to be
+# quiet, but this one has a reason to be quieter.
+"comment.unused" = { fg = "#707380", modifiers = ["italic"] }
+
+"variable"                     = { fg = "#d3d7eb" }
+"variable.builtin"             = { fg = "#f5c66b" }
+"variable.parameter"           = { fg = "#38b59e" }
+"variable.other.member"        = { fg = "#d3d7eb" }
+"variable.other.member.private" = { fg = "#d3d7eb" }
+
+"label" = { fg = "#f5c66b" }
+
+"punctuation"           = { fg = "#868999" }
+"punctuation.delimiter" = { fg = "#868999" }
+"punctuation.bracket"   = { fg = "#868999" }
+"punctuation.special"   = { fg = "#38b59e" }
+
+"keyword"                     = { fg = "#6e92de" }
+"keyword.control"             = { fg = "#6e92de" }
+"keyword.control.conditional" = { fg = "#6e92de" }
+"keyword.control.repeat"      = { fg = "#6e92de" }
+"keyword.control.import"      = { fg = "#6e92de" }
+"keyword.control.return"      = { fg = "#6e92de" }
+"keyword.control.exception"   = { fg = "#6e92de" }
+"keyword.operator"            = { fg = "#5dbec4" }
+"keyword.directive"           = { fg = "#38b59e" }
+"keyword.function"            = { fg = "#6e92de" }
+"keyword.storage"             = { fg = "#6e92de" }
+"keyword.storage.type"        = { fg = "#6e92de" }
+"keyword.storage.modifier"    = { fg = "#6e92de" }
+
+"operator" = { fg = "#5dbec4" }
+
+"function"                = { fg = "#5dbec4" }
+"function.builtin"        = { fg = "#f5c66b" }
+"function.method"         = { fg = "#5dbec4" }
+"function.method.private" = { fg = "#5dbec4" }
+"function.macro"          = { fg = "#38b59e" }
+"function.special"        = { fg = "#38b59e" }
+
+"tag"         = { fg = "#ea5d5d" }
+"tag.builtin" = { fg = "#ea5d5d" }
+"namespace"   = { fg = "#b094e2" }
+"special"     = { fg = "#38b59e" }
+
+# ── Markup ───────────────────────────────────────────────────────────────────
+#
+# Every heading level takes the same *sódio*. Helix shows the `#` markers, and
+# indentation carries the rest, so the level is already legible — inventing a
+# six-step colour ladder would mean assigning meaning to hues that do not have
+# it, and this project does not ship a colour nobody measured.
+"markup.heading"        = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.heading.marker" = { fg = "#707380" }
+"markup.heading.1" = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.heading.2" = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.heading.3" = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.heading.4" = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.heading.5" = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.heading.6" = { fg = "#f2984a", modifiers = ["bold"] }
+
+"markup.list"            = { fg = "#6e92de" }
+"markup.list.unnumbered" = { fg = "#6e92de" }
+"markup.list.numbered"   = { fg = "#6e92de" }
+"markup.list.checked"    = { fg = "#89d093" }
+"markup.list.unchecked"  = { fg = "#707380" }
+
+"markup.bold"          = { fg = "#e7ebff", modifiers = ["bold"] }
+"markup.italic"        = { modifiers = ["italic"] }
+"markup.strikethrough" = { fg = "#707380", modifiers = ["crossed_out"] }
+
+"markup.link.url"   = { fg = "#6e92de", underline = { style = "line" } }
+"markup.link.label" = { fg = "#89d093" }
+"markup.link.text"  = { fg = "#6e92de" }
+
+"markup.quote"      = { fg = "#868999", modifiers = ["italic"] }
+"markup.raw"        = { fg = "#89d093" }
+"markup.raw.inline" = { fg = "#89d093" }
+"markup.raw.block"  = { fg = "#89d093" }
+
+# The same markup rendered inside a completion or hover popup, which sits on the
+# float surface rather than on the buffer.
+"markup.normal.completion"     = { fg = "#d3d7eb" }
+"markup.normal.hover"          = { fg = "#d3d7eb" }
+"markup.heading.completion"    = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.heading.hover"         = { fg = "#f2984a", modifiers = ["bold"] }
+"markup.raw.inline.completion" = { fg = "#89d093" }
+"markup.raw.inline.hover"      = { fg = "#89d093" }
+
+# ── Diagnostics ──────────────────────────────────────────────────────────────
+#
+# Undercurled rather than recoloured. A diagnostic is a claim about code, not a
+# reason to repaint it — losing the syntax colour under an error would hide the
+# thing you are being asked to look at.
+"diagnostic"             = { underline = { color = "#707380", style = "curl" } }
+"diagnostic.error"       = { underline = { color = "#ea5d5d", style = "curl" } }
+"diagnostic.warning"     = { underline = { color = "#f5c66b", style = "curl" } }
+"diagnostic.info"        = { underline = { color = "#6e92de", style = "curl" } }
+"diagnostic.hint"        = { underline = { color = "#5dbec4", style = "curl" } }
+"diagnostic.unnecessary" = { fg = "#707380", modifiers = ["dim"] }
+"diagnostic.deprecated"  = { fg = "#707380", modifiers = ["crossed_out"] }
+
+# The gutter signs, which do carry the colour — that is the whole job there.
+"error"   = { fg = "#ea5d5d" }
+"warning" = { fg = "#f5c66b" }
+"info"    = { fg = "#6e92de" }
+"hint"    = { fg = "#5dbec4" }
+
+# ── Diff ─────────────────────────────────────────────────────────────────────
+#
+# The git roles, so the gutter here reads the same as `eza --git` and everything
+# else in the toolchain.
+"diff.plus"           = { fg = "#89d093" }
+"diff.plus.gutter"    = { fg = "#89d093" }
+"diff.minus"          = { fg = "#ea5d5d" }
+"diff.minus.gutter"   = { fg = "#ea5d5d" }
+"diff.delta"          = { fg = "#f5c66b" }
+"diff.delta.moved"    = { fg = "#f5c66b" }
+"diff.delta.conflict" = { fg = "#ea5d5d" }
+"diff.delta.gutter"   = { fg = "#f5c66b" }

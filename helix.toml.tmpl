@@ -1,0 +1,277 @@
+---
+spn:
+  version: "^1.0"
+  matrix: [flavor]
+  filename: "themes/sp_night_{{ .Flavor }}.toml"
+---
+# SP Night — {{ .FlavorLabel }}
+# {{ .FlavorDesc }}
+#
+# Generated from the SP Night palette — do not edit by hand.
+# {{ .Repo }}
+#
+# install: {{ .Install }}
+# enable:  {{ .Activate }}
+
+# ── The surface ──────────────────────────────────────────────────────────────
+#
+# Helix paints the whole editor from `ui.background`, so this is the *laje* the
+# rest of the theme sits on. `ui.text.focus` is the one place text is allowed
+# above `ui.fg`: it marks the row you are actually on in a picker, and the
+# palette has a measured colour for exactly that rather than a brightened `fg`.
+"ui.background"           = { bg = "{{ .R.ui.bg }}" }
+"ui.background.separator" = { fg = "{{ .R.ui.border }}" }
+"ui.text"                 = { fg = "{{ .R.ui.fg }}" }
+"ui.text.focus"           = { fg = "{{ .R.ui.fg_bright }}", bg = "{{ .R.ui.selection }}", modifiers = ["bold"] }
+"ui.text.inactive"        = { fg = "{{ .R.ui.fg_muted }}" }
+"ui.text.info"            = { fg = "{{ .R.ui.fg_dim }}" }
+"ui.text.directory"       = { fg = "{{ .R.syntax.keyword }}" }
+"ui.window"               = { fg = "{{ .R.ui.border }}" }
+
+# ── Mode ─────────────────────────────────────────────────────────────────────
+#
+# The one thing a modal editor must never leave ambiguous. So the mode changes
+# **hue**, not brightness: normal is the *sódio* cursor this project uses
+# everywhere, insert goes to *ibira*, select to *marginal*. Three colours a
+# reader can tell apart at the edge of vision, which is where the mode is
+# actually read — nobody looks at the word.
+#
+# The text inside each cursor is chosen by measured contrast rather than picked,
+# because "dark text on the accent" stops being true the moment a flavour moves.
+"ui.cursor"                 = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.fg_dim }}", bg = "{{ .R.ui.fg_dim }}" }
+"ui.cursor.primary"         = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.cursor }}", bg = "{{ .R.ui.cursor }}" }
+"ui.cursor.normal"          = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.cursor }}", bg = "{{ .R.ui.cursor }}" }
+"ui.cursor.insert"          = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.diagnostic.ok }}", bg = "{{ .R.diagnostic.ok }}" }
+"ui.cursor.select"          = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.accent_alt }}", bg = "{{ .R.ui.accent_alt }}" }
+"ui.cursor.primary.normal"  = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.cursor }}", bg = "{{ .R.ui.cursor }}" }
+"ui.cursor.primary.insert"  = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.diagnostic.ok }}", bg = "{{ .R.diagnostic.ok }}" }
+"ui.cursor.primary.select"  = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.accent_alt }}", bg = "{{ .R.ui.accent_alt }}" }
+"ui.cursor.match"           = { fg = "{{ .R.ui.match }}", modifiers = ["bold"] }
+
+# ── Selection ────────────────────────────────────────────────────────────────
+#
+# Helix keeps many selections at once, so the primary one has to be findable
+# among them. It takes *vidro* — glass reflecting the street — and the rest fall
+# back to *concreto*, one step down the same surface ladder.
+"ui.selection"           = { bg = "{{ .R.ui.line }}" }
+"ui.selection.primary"   = { bg = "{{ .R.ui.selection }}" }
+"ui.highlight"           = { bg = "{{ .R.ui.selection }}" }
+"ui.highlight.frameline" = { bg = "{{ .R.ui.line }}" }
+
+# ── Gutter and lines ─────────────────────────────────────────────────────────
+#
+# The gutter is meant to be read past, not at, so the numbers sit at the quietest
+# text step and only the current line comes back up to `ui.fg`.
+"ui.linenr"                  = { fg = "{{ .R.ui.fg_muted }}" }
+"ui.linenr.selected"         = { fg = "{{ .R.ui.fg }}", modifiers = ["bold"] }
+"ui.gutter"                  = { bg = "{{ .R.ui.bg }}" }
+"ui.gutter.selected"         = { bg = "{{ .R.ui.line }}" }
+"ui.cursorline.primary"      = { bg = "{{ .R.ui.line }}" }
+"ui.cursorline.secondary"    = { bg = "{{ .R.ui.line }}" }
+"ui.cursorcolumn.primary"    = { bg = "{{ .R.ui.line }}" }
+"ui.cursorcolumn.secondary"  = { bg = "{{ .R.ui.line }}" }
+
+# ── Statusline and bufferline ────────────────────────────────────────────────
+#
+# The mode block repeats the cursor's hue, which is the point: two places
+# carrying the same fact, never disagreeing, because both resolve the same role.
+"ui.statusline"          = { fg = "{{ .R.ui.fg }}", bg = "{{ .R.ui.panel }}" }
+"ui.statusline.inactive" = { fg = "{{ .R.ui.fg_muted }}", bg = "{{ .R.ui.bg_deep }}" }
+"ui.statusline.normal"   = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.cursor }}", bg = "{{ .R.ui.cursor }}", modifiers = ["bold"] }
+"ui.statusline.insert"   = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.diagnostic.ok }}", bg = "{{ .R.diagnostic.ok }}", modifiers = ["bold"] }
+"ui.statusline.select"   = { fg = "{{ readable .R.ui.on_accent .R.ui.fg_bright .R.ui.accent_alt }}", bg = "{{ .R.ui.accent_alt }}", modifiers = ["bold"] }
+"ui.statusline.separator" = { fg = "{{ .R.ui.border }}" }
+"ui.bufferline"            = { fg = "{{ .R.ui.fg_muted }}", bg = "{{ .R.ui.bg_deep }}" }
+"ui.bufferline.active"     = { fg = "{{ .R.ui.fg }}", bg = "{{ .R.ui.panel }}", modifiers = ["bold"] }
+"ui.bufferline.background" = { bg = "{{ .R.ui.bg_deep }}" }
+
+# ── Popups, menus and the picker ─────────────────────────────────────────────
+#
+# Anything floating drops to the *vão*, the deepest recess, so it separates from
+# the buffer by depth rather than by a border alone.
+"ui.popup"                        = { fg = "{{ .R.ui.fg }}", bg = "{{ .R.ui.float }}" }
+"ui.popup.info"                   = { fg = "{{ .R.ui.fg_dim }}", bg = "{{ .R.ui.float }}" }
+"ui.help"                         = { fg = "{{ .R.ui.fg }}", bg = "{{ .R.ui.float }}" }
+"ui.menu"                         = { fg = "{{ .R.ui.fg }}", bg = "{{ .R.ui.float }}" }
+"ui.menu.selected"                = { fg = "{{ .R.ui.fg_bright }}", bg = "{{ .R.ui.selection }}", modifiers = ["bold"] }
+"ui.menu.scroll"                  = { fg = "{{ .R.ui.border }}", bg = "{{ .R.ui.panel }}" }
+"ui.picker.header"                = { fg = "{{ .R.ui.fg_dim }}" }
+"ui.picker.header.column"         = { fg = "{{ .R.ui.fg_dim }}" }
+"ui.picker.header.column.active"  = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+
+# ── Virtual text ─────────────────────────────────────────────────────────────
+#
+# None of this was typed by the person reading it, so none of it is allowed to
+# compete with what was. Inlay hints in particular sit at the quietest step the
+# palette measures — they annotate code, they are not code.
+"ui.virtual"                       = { fg = "{{ .R.ui.fg_muted }}" }
+"ui.virtual.ruler"                 = { bg = "{{ .R.ui.line }}" }
+"ui.virtual.whitespace"            = { fg = "{{ .R.ui.fg_muted }}" }
+"ui.virtual.indent-guide"          = { fg = "{{ .R.ui.border }}" }
+"ui.virtual.inlay-hint"            = { fg = "{{ .R.ui.fg_muted }}" }
+"ui.virtual.inlay-hint.parameter"  = { fg = "{{ .R.ui.fg_muted }}" }
+"ui.virtual.inlay-hint.type"       = { fg = "{{ .R.ui.fg_muted }}" }
+"ui.virtual.wrap"                  = { fg = "{{ .R.ui.border }}" }
+"ui.virtual.jump-label"            = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+
+"ui.debug"            = { fg = "{{ .R.diagnostic.warn }}" }
+"ui.debug.breakpoint" = { fg = "{{ .R.diagnostic.error }}" }
+"ui.debug.active"     = { fg = "{{ .R.diagnostic.warn }}" }
+"tabstop"             = { bg = "{{ .R.ui.selection }}" }
+
+# ── Syntax ───────────────────────────────────────────────────────────────────
+#
+# The same accents every other SP Night port gives these, which is the whole
+# reason the role layer exists: a Rust file in Helix and the same file catted in
+# Ghostty are lit by one decision, made once.
+"attribute" = { fg = "{{ .R.syntax.attribute }}" }
+
+"type"              = { fg = "{{ .R.syntax.type }}" }
+"type.builtin"      = { fg = "{{ .R.syntax.builtin }}" }
+"type.parameter"    = { fg = "{{ .R.syntax.type }}" }
+"type.enum.variant" = { fg = "{{ .R.syntax.constant }}" }
+"constructor"       = { fg = "{{ .R.syntax.constructor }}" }
+
+"constant"                  = { fg = "{{ .R.syntax.constant }}" }
+"constant.builtin"          = { fg = "{{ .R.syntax.constant }}" }
+"constant.builtin.boolean"  = { fg = "{{ .R.syntax.boolean }}" }
+"constant.character"        = { fg = "{{ .R.syntax.character }}" }
+"constant.character.escape" = { fg = "{{ .R.syntax.escape }}" }
+"constant.numeric"          = { fg = "{{ .R.syntax.number }}" }
+"constant.numeric.integer"  = { fg = "{{ .R.syntax.number }}" }
+"constant.numeric.float"    = { fg = "{{ .R.syntax.number }}" }
+
+"string"                = { fg = "{{ .R.syntax.string }}" }
+"string.regexp"         = { fg = "{{ .R.syntax.escape }}" }
+"string.special"        = { fg = "{{ .R.syntax.escape }}" }
+"string.special.path"   = { fg = "{{ .R.syntax.escape }}" }
+"string.special.symbol" = { fg = "{{ .R.syntax.constant }}" }
+# A URL in source is the same thing as a URL in Markdown, so it takes the link
+# role rather than the string one, and gets the underline that makes it look
+# clickable.
+"string.special.url" = { fg = "{{ .R.ui.link }}", underline = { style = "line" } }
+
+"comment"                     = { fg = "{{ .R.syntax.comment }}", modifiers = ["italic"] }
+"comment.line"                = { fg = "{{ .R.syntax.comment }}", modifiers = ["italic"] }
+"comment.block"               = { fg = "{{ .R.syntax.comment }}", modifiers = ["italic"] }
+"comment.line.documentation"  = { fg = "{{ .R.syntax.comment }}", modifiers = ["italic"] }
+"comment.block.documentation" = { fg = "{{ .R.syntax.comment }}", modifiers = ["italic"] }
+# Code the compiler has told you is dead. It is still a comment's job to be
+# quiet, but this one has a reason to be quieter.
+"comment.unused" = { fg = "{{ .R.syntax.deprecated }}", modifiers = ["italic"] }
+
+"variable"                     = { fg = "{{ .R.syntax.variable }}" }
+"variable.builtin"             = { fg = "{{ .R.syntax.builtin }}" }
+"variable.parameter"           = { fg = "{{ .R.syntax.parameter }}" }
+"variable.other.member"        = { fg = "{{ .R.syntax.field }}" }
+"variable.other.member.private" = { fg = "{{ .R.syntax.field }}" }
+
+"label" = { fg = "{{ .R.syntax.attribute }}" }
+
+"punctuation"           = { fg = "{{ .R.syntax.punctuation }}" }
+"punctuation.delimiter" = { fg = "{{ .R.syntax.punctuation }}" }
+"punctuation.bracket"   = { fg = "{{ .R.syntax.punctuation }}" }
+"punctuation.special"   = { fg = "{{ .R.syntax.escape }}" }
+
+"keyword"                     = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.control"             = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.control.conditional" = { fg = "{{ .R.syntax.conditional }}" }
+"keyword.control.repeat"      = { fg = "{{ .R.syntax.repeat }}" }
+"keyword.control.import"      = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.control.return"      = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.control.exception"   = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.operator"            = { fg = "{{ .R.syntax.operator }}" }
+"keyword.directive"           = { fg = "{{ .R.syntax.macro }}" }
+"keyword.function"            = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.storage"             = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.storage.type"        = { fg = "{{ .R.syntax.keyword }}" }
+"keyword.storage.modifier"    = { fg = "{{ .R.syntax.keyword }}" }
+
+"operator" = { fg = "{{ .R.syntax.operator }}" }
+
+"function"                = { fg = "{{ .R.syntax.function }}" }
+"function.builtin"        = { fg = "{{ .R.syntax.builtin }}" }
+"function.method"         = { fg = "{{ .R.syntax.method }}" }
+"function.method.private" = { fg = "{{ .R.syntax.method }}" }
+"function.macro"          = { fg = "{{ .R.syntax.macro }}" }
+"function.special"        = { fg = "{{ .R.syntax.macro }}" }
+
+"tag"         = { fg = "{{ .R.syntax.tag }}" }
+"tag.builtin" = { fg = "{{ .R.syntax.tag }}" }
+"namespace"   = { fg = "{{ .R.syntax.namespace }}" }
+"special"     = { fg = "{{ .R.syntax.escape }}" }
+
+# ── Markup ───────────────────────────────────────────────────────────────────
+#
+# Every heading level takes the same *sódio*. Helix shows the `#` markers, and
+# indentation carries the rest, so the level is already legible — inventing a
+# six-step colour ladder would mean assigning meaning to hues that do not have
+# it, and this project does not ship a colour nobody measured.
+"markup.heading"        = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.heading.marker" = { fg = "{{ .R.ui.fg_muted }}" }
+"markup.heading.1" = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.heading.2" = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.heading.3" = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.heading.4" = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.heading.5" = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.heading.6" = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+
+"markup.list"            = { fg = "{{ .R.ui.accent_alt }}" }
+"markup.list.unnumbered" = { fg = "{{ .R.ui.accent_alt }}" }
+"markup.list.numbered"   = { fg = "{{ .R.ui.accent_alt }}" }
+"markup.list.checked"    = { fg = "{{ .R.diagnostic.ok }}" }
+"markup.list.unchecked"  = { fg = "{{ .R.ui.fg_muted }}" }
+
+"markup.bold"          = { fg = "{{ .R.ui.fg_bright }}", modifiers = ["bold"] }
+"markup.italic"        = { modifiers = ["italic"] }
+"markup.strikethrough" = { fg = "{{ .R.ui.fg_muted }}", modifiers = ["crossed_out"] }
+
+"markup.link.url"   = { fg = "{{ .R.ui.link }}", underline = { style = "line" } }
+"markup.link.label" = { fg = "{{ .R.syntax.string }}" }
+"markup.link.text"  = { fg = "{{ .R.ui.link }}" }
+
+"markup.quote"      = { fg = "{{ .R.ui.fg_dim }}", modifiers = ["italic"] }
+"markup.raw"        = { fg = "{{ .R.syntax.string }}" }
+"markup.raw.inline" = { fg = "{{ .R.syntax.string }}" }
+"markup.raw.block"  = { fg = "{{ .R.syntax.string }}" }
+
+# The same markup rendered inside a completion or hover popup, which sits on the
+# float surface rather than on the buffer.
+"markup.normal.completion"     = { fg = "{{ .R.ui.fg }}" }
+"markup.normal.hover"          = { fg = "{{ .R.ui.fg }}" }
+"markup.heading.completion"    = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.heading.hover"         = { fg = "{{ .R.ui.accent }}", modifiers = ["bold"] }
+"markup.raw.inline.completion" = { fg = "{{ .R.syntax.string }}" }
+"markup.raw.inline.hover"      = { fg = "{{ .R.syntax.string }}" }
+
+# ── Diagnostics ──────────────────────────────────────────────────────────────
+#
+# Undercurled rather than recoloured. A diagnostic is a claim about code, not a
+# reason to repaint it — losing the syntax colour under an error would hide the
+# thing you are being asked to look at.
+"diagnostic"             = { underline = { color = "{{ .R.ui.fg_muted }}", style = "curl" } }
+"diagnostic.error"       = { underline = { color = "{{ .R.diagnostic.error }}", style = "curl" } }
+"diagnostic.warning"     = { underline = { color = "{{ .R.diagnostic.warn }}", style = "curl" } }
+"diagnostic.info"        = { underline = { color = "{{ .R.diagnostic.info }}", style = "curl" } }
+"diagnostic.hint"        = { underline = { color = "{{ .R.diagnostic.hint }}", style = "curl" } }
+"diagnostic.unnecessary" = { fg = "{{ .R.syntax.deprecated }}", modifiers = ["dim"] }
+"diagnostic.deprecated"  = { fg = "{{ .R.syntax.deprecated }}", modifiers = ["crossed_out"] }
+
+# The gutter signs, which do carry the colour — that is the whole job there.
+"error"   = { fg = "{{ .R.diagnostic.error }}" }
+"warning" = { fg = "{{ .R.diagnostic.warn }}" }
+"info"    = { fg = "{{ .R.diagnostic.info }}" }
+"hint"    = { fg = "{{ .R.diagnostic.hint }}" }
+
+# ── Diff ─────────────────────────────────────────────────────────────────────
+#
+# The git roles, so the gutter here reads the same as `eza --git` and everything
+# else in the toolchain.
+"diff.plus"           = { fg = "{{ .R.git.added }}" }
+"diff.plus.gutter"    = { fg = "{{ .R.git.added }}" }
+"diff.minus"          = { fg = "{{ .R.git.removed }}" }
+"diff.minus.gutter"   = { fg = "{{ .R.git.removed }}" }
+"diff.delta"          = { fg = "{{ .R.git.modified }}" }
+"diff.delta.moved"    = { fg = "{{ .R.git.renamed }}" }
+"diff.delta.conflict" = { fg = "{{ .R.git.conflict }}" }
+"diff.delta.gutter"   = { fg = "{{ .R.git.modified }}" }
